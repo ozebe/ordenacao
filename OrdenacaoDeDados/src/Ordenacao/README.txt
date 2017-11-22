@@ -1,62 +1,65 @@
 /*
-Sistema de ordenaÁ„o de dados numÈricos 
-vers„o 1.7
+Sistema de ordena√ß√£o de dados num√©ricos 
+vers√£o 1.7
 desenvolvido por Wesley Ozebe e Jackson Vinicius
-˙ltima atualizaÁ„o: 08/11/2017
+√∫ltima atualiza√ß√£o: 08/11/2017
 (melhor visualizado no notepad++)
-(as principais funÁıes est„o na parte de baixo do documento)
+(as principais fun√ß√µes est√£o na parte de baixo do documento)
 
 #FAQ:
---------------- Tipos de arquivos v·lidos ---------------
-separados por espaÁamento simples:
+--------------- Tipos de arquivos v√°lidos ---------------
+separados por espa√ßamento simples:
 1 3 2 7 10 5 
 22 32 12 15
-observe que ao final da primeira linha, depois do 5 h· um espaÁo
+observe que ao final da primeira linha, depois do 5 h√° um espa√ßo
 ele delimita a primeira linha da segunda, fique atento
 caso seu arquivo seja dessa forma
 ------------------------------------------------------------------
-Separados por vÌrgulas
+Separados por v√≠rgulas
 13,2,5,8,9,36,66,
 32,10,21
-observe que as linhas s„o separadas por vÌrgulas
+observe que as linhas s√£o separadas por v√≠rgulas
 ------------------------------------------------------------------
 separados por tab
 79179	33886	94019	65386	4699	
 43448	15904	30542	99899	72414	
 78291	7953	53250	93258	41164	
 92766	90124	11179	92408	74786	
-observe que no final de cada linha h· um tab
-vocÍ pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
+observe que no final de cada linha h√° um tab
+voc√™ pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
 para fins de teste no programa.
 ------------------------------------------------------------------
+#Sobre a vers√£o 1.8
+Modified: modificado o design gr√°fico do programa, o tema padr√£o anterior era o Nimbus, agora
+o tema padr√£o √© o Darcula
 
-#Sobre a vers„o 1.7
+#Sobre a vers√£o 1.7
 Fix: Consertado todos os bugs restantes na abertura de arquivos.
-Fix: Atualizado o sistema de carregamento, agora È utilizado um JFileChooser para escolher o arquivo a ser carregado.
-Fix: Atualizado o sistema de salvamento, agora È utilizado um JFileChooser para escolher onde salvar.
-Add: Adicionado um aviso caso o arquivo carregado n„o seja v·lido.
-Add: ApÛs o arquivo ser ordenado agora aparece a quantia em milisegundos que foi necess·rio para sua ordenaÁ„o.
-Improvement: melhorado o design do programa, aumentando a janela e os botıes.
+Fix: Atualizado o sistema de carregamento, agora √© utilizado um JFileChooser para escolher o arquivo a ser carregado.
+Fix: Atualizado o sistema de salvamento, agora √© utilizado um JFileChooser para escolher onde salvar.
+Add: Adicionado um aviso caso o arquivo carregado n√£o seja v√°lido.
+Add: Ap√≥s o arquivo ser ordenado agora aparece a quantia em milisegundos que foi necess√°rio para sua ordena√ß√£o.
+Improvement: melhorado o design do programa, aumentando a janela e os bot√µes.
 
-#Sobre a vers„o 1.6
+#Sobre a vers√£o 1.6
 Fix: solucionado alguns problemas com o sistema de carregamento, onde havia a possibilidade de abrir um arquivo contendo letras, assim travando o programa.
-Add: adicionado Ìcones para os botıes, deixando o programa mais intuitivo.
-Add: adicionado o sistema de carregamento de arquivos melhorado, substituindo mÈtodo antigo(veja o FAQ).
+Add: adicionado √≠cones para os bot√µes, deixando o programa mais intuitivo.
+Add: adicionado o sistema de carregamento de arquivos melhorado, substituindo m√©todo antigo(veja o FAQ).
 Add: adicionado melhorias com a estabilidade do programa, sendo possivel abrir arquivos maiores.
-Add: adicionado o bot„o "sobre" ele mostra a quantia de n˙meros que foram carregados do arquivo(descartando tabulaÁ„o, espaÁos e vÌrgulas).
+Add: adicionado o bot√£o "sobre" ele mostra a quantia de n√∫meros que foram carregados do arquivo(descartando tabula√ß√£o, espa√ßos e v√≠rgulas).
 
-#Sobre a vers„o 1.5
+#Sobre a vers√£o 1.5
 Add: visual do programa totalmente remodelado, utilizando JFrame.
-Improvement: melhorado o sistema de convers„o dos dados, de String para Vetor, o que corrige o bug de as vezes um n˙mero mesmo separado ser confundido com outro.
-Add: adicionado todos os outros mÈtodos restantes de ordenaÁ„o como tambÈm de pesquisa de dados.
+Improvement: melhorado o sistema de convers√£o dos dados, de String para Vetor, o que corrige o bug de as vezes um n√∫mero mesmo separado ser confundido com outro.
+Add: adicionado todos os outros m√©todos restantes de ordena√ß√£o como tamb√©m de pesquisa de dados.
 
-#Sobre a vers„o 1.0
-Add: criado a lÛgica de carregamento de arquivos .txt e sua convers„o para vetor
+#Sobre a vers√£o 1.0
+Add: criado a l√≥gica de carregamento de arquivos .txt e sua convers√£o para vetor
 Add: adicionado JOptionPanes para leitura de arquivos e para a leitura dos dados.
 Add: adicionado o bubble sort.
 ------------------------------------------------------------------
 */
-//Classes e mÈtodos do programa para os curiosos
+//Classes e m√©todos do programa para os curiosos
 
 //#-----------------------#
 //Sistema de carregamento:
@@ -83,7 +86,7 @@ private void carregarActionPerformed(java.awt.event.ActionEvent evt) {
                
                 array = conteudo.split(" ");
                 vetor = new int[array.length];
-                //esse mÈtodo for, realiza a convers„o da string array(que recebeu o valor da linha.split, ou seja, usou os espaÁos para definir o comeÁo e final do n˙mero)
+                //esse m√©todo for, realiza a convers√£o da string array(que recebeu o valor da linha.split, ou seja, usou os espa√ßos para definir o come√ßo e final do n√∫mero)
                 for (int i = 0; i < array.length; i++) {
                     vetor[i] = Integer.parseInt(array[i]);
                    
@@ -101,9 +104,9 @@ private void carregarActionPerformed(java.awt.event.ActionEvent evt) {
                 JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado" + file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
             }
             catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Arquivo inv·lido carregado" + "\n" +file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
-                mostrarValoresOrdenados.setText("Arquivo inv·lido carregado");
-                textarea.setText("Arquivo inv·lido carregado");
+                JOptionPane.showMessageDialog(null, "Arquivo inv√°lido carregado" + "\n" +file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+                mostrarValoresOrdenados.setText("Arquivo inv√°lido carregado");
+                textarea.setText("Arquivo inv√°lido carregado");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado", "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
@@ -137,7 +140,7 @@ private void salvarArqActionPerformed(java.awt.event.ActionEvent evt) {
     }
 
 //#-----------------------#
-//sistema de convers„o:
+//sistema de convers√£o:
 //#-----------------------#
 public class converter {
     public static String toString(int[] vetor) {
