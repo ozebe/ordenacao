@@ -1,8 +1,8 @@
 /*
 Sistema de ordenação de dados numéricos 
-versão 1.7
+versão 1.8
 desenvolvido por Wesley Ozebe e Jackson Vinicius
-última atualização: 08/11/2017
+última atualização: 22/11/2017
 (melhor visualizado no notepad++)
 (as principais funções estão na parte de baixo do documento)
 
