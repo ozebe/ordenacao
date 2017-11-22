@@ -17,6 +17,7 @@ import static Ordenacao.PesquisaBinaria.pesquisaBinaria;
 import static Ordenacao.PesquisaSequencial.pesquisaSequencial;
 import static Ordenacao.QuickSort.quickSort;
 import static Ordenacao.SelectionSort.selectionSort;
+import com.bulenkov.darcula.DarculaLaf;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 
 /**
  *
@@ -176,7 +178,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Versão 1.7");
+        jLabel2.setText("Versão 1.8");
 
         textarea.setEditable(false);
         textarea.setColumns(20);
@@ -480,7 +482,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -495,7 +497,20 @@ public class OrdenacaoUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(OrdenacaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(OrdenacaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }*/
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                BasicLookAndFeel darcula = new DarculaLaf();
+             //   if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(darcula);
+                  //  break;
+               // }
+            }
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(OrdenacaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
         //</editor-fold>
 
         /* Create and display the form */
