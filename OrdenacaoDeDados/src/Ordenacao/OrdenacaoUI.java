@@ -293,7 +293,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                 executor.execute(new FileProcessor());
               
               //  executor.awaitTermination(0, TimeUnit.SECONDS);
-                   
+                   //será retirado na próxima grande atualização
                 /*
                 textarea.read(new FileReader(file.getAbsolutePath()), null);
                 //biblioteca especial apache FileUtils

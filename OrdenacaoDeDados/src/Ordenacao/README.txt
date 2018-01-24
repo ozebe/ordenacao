@@ -29,7 +29,7 @@ observe que no final de cada linha há um tab
 você pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
 para fins de teste no programa.
 ------------------------------------------------------------------
-----------------------------Bugs conhecidos-----------------------
+---------------------Bugs conhecidos------------------------------
 se existir um número maior que o limite do integer que é:
 2147483647((2^32 )- 1)
 o sistema não consegue carregar, já estou trabalhando em uma 
