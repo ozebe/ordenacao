@@ -36,8 +36,9 @@ o sistema não consegue carregar, já estou trabalhando em uma
 possivel correção
 ------------------------------------------------------------------
 #Sobre a versão 1.9
-Modified: modificado o sistema de carregamento, utilizando-se thread para o carregamento ser mais rápido
-Modified: retirado partes de códigos desnecessárias ao abrir arquivos para deixar o carregamento de arquivos mais rápido
+Modified: modificado o sistema de carregamento, utilizando-se thread para o carregamento ser mais rápido.
+Modified: retirado partes de códigos desnecessárias ao abrir arquivos para deixar o carregamento de arquivos mais rápido.
+Add: adicionado uma barra de carregamento ao carregar os arquivos.
 
 #Sobre a versão 1.8
 Modified: modificado o design gráfico do programa, o tema padrão anterior era o Nimbus, agora
