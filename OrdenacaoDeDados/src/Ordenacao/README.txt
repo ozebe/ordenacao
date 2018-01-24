@@ -1,8 +1,8 @@
 /*
 Sistema de ordenação de dados numéricos 
-versão 1.8
+versão 1.9
 desenvolvido por Wesley Ozebe e Jackson Vinicius
-última atualização: 22/11/2017
+última atualização: 23/01/2018
 (melhor visualizado no notepad++)
 (as principais funções estão na parte de baixo do documento)
 
@@ -29,6 +29,16 @@ observe que no final de cada linha há um tab
 você pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
 para fins de teste no programa.
 ------------------------------------------------------------------
+----------------------------Bugs conhecidos-----------------------
+se existir um número maior que o limite do integer que é:
+2147483647((2^32 )- 1)
+o sistema não consegue carregar, já estou trabalhando em uma 
+possivel correção
+------------------------------------------------------------------
+#Sobre a versão 1.9
+Modified: modificado o sistema de carregamento, utilizando-se thread para o carregamento ser mais rápido
+Modified: retirado partes de códigos desnecessárias ao abrir arquivos para deixar o carregamento de arquivos mais rápido
+
 #Sobre a versão 1.8
 Modified: modificado o design gráfico do programa, o tema padrão anterior era o Nimbus, agora
 o tema padrão é o Darcula

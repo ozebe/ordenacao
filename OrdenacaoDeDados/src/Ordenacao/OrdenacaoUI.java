@@ -11,8 +11,6 @@ import org.apache.commons.io.FileUtils;
 import static Ordenacao.BubbleSort.bubbleSort;
 import static Ordenacao.InsertionSort.insertionSort;
 import static Ordenacao.MergeSort.mergeSort;
-import static Ordenacao.MostrarVetor.mostrarVetor;
-
 import static Ordenacao.PesquisaBinaria.pesquisaBinaria;
 import static Ordenacao.PesquisaSequencial.pesquisaSequencial;
 import static Ordenacao.QuickSort.quickSort;
@@ -22,11 +20,18 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import static out.transparent.error.ErrorOutJOptions.*;
+//para usar meu import é só chamar o TransparentBlackJOptions
 
 /**
  *
@@ -34,17 +39,15 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
  */
 public class OrdenacaoUI extends javax.swing.JFrame {
 
-    
-   
     public static String statusConversao = "";
     public static String nome;
-    public static int[] vetor;
-    public static int[] copiaVet;
-    String array[];
+    public static int[] vetor; //era int
+    public static int[] copiaVet; //era int
+    public static String array[];
     public static int trigger = 0;
     public static JFileChooser fc;
+    public static String conteudo;
     
-   
     Icon erroIcone = new ImageIcon(getToolkit().createImage(getClass().getResource("/Ordenacao/images/Erro.png")));
     Icon sucessoIcone = new ImageIcon(getToolkit().createImage(getClass().getResource("/Ordenacao/images/icons8-Sobre-32.png")));
 
@@ -53,6 +56,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
      */
     public OrdenacaoUI() {
         initComponents();
+        barraProgresso.setVisible(false);
     }
 
     class MyCustomFilter extends javax.swing.filechooser.FileFilter {
@@ -94,6 +98,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         mostrarValoresOrdenados = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
+        barraProgresso = new javax.swing.JProgressBar();
 
         fileChooser.setDialogTitle("");
         fileChooser.setFileFilter(new MyCustomFilter());
@@ -132,6 +137,11 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         salvarArq.setText("   Salvar");
         salvarArq.setMaximumSize(new java.awt.Dimension(113, 48));
         salvarArq.setMinimumSize(new java.awt.Dimension(113, 48));
+        salvarArq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                salvarArqMouseEntered(evt);
+            }
+        });
         salvarArq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salvarArqActionPerformed(evt);
@@ -195,6 +205,8 @@ public class OrdenacaoUI extends javax.swing.JFrame {
 
         jLabel3.setText("criado por Ozebe e Jack |");
 
+        barraProgresso.setFocusable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,9 +226,6 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                             .addComponent(carregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(resetar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(348, 348, 348)
                                 .addComponent(jLabel3)
@@ -224,13 +233,18 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                                 .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(barraProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))))
                         .addGap(9, 9, 9))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(9, 9, 9)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +261,9 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)))
@@ -257,7 +273,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                         .addComponent(resetar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,29 +281,29 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarActionPerformed
-        /*        
-        nome = JOptionPane.showInputDialog("Informe a localização do arquivo");
-        vetor = Arquivo.carregarArquivo(nome);
-        copiaVet = copiarVetor.copiarVetor(vetor);
-        mostrarArquivoCarregado.setText("Arquivo: " + nome);
-        String valorConvertido = converter.toString(vetor);
-        mostrarValoresDoArquivoCarregado.setText("Dados: " + valorConvertido); */
-        
+
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-             File file = fileChooser.getSelectedFile();
+            File file = fileChooser.getSelectedFile();
             try {
-             
-                // What to do with the file, e.g. display it in a TextArea
+                textarea.read(new FileReader(file.getAbsolutePath()), null);
+                conteudo = FileUtils.readFileToString(file, "UTF-8");
+                int janelaProcessamento = 4;
+                ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
+                executor.execute(new FileProcessor());
+              
+              //  executor.awaitTermination(0, TimeUnit.SECONDS);
+                   
+                /*
                 textarea.read(new FileReader(file.getAbsolutePath()), null);
                 //biblioteca especial apache FileUtils
-                String conteudo = FileUtils.readFileToString(file, "UTF-8");
-              
+                conteudo = FileUtils.readFileToString(file, "UTF-8");
+              //------------------------------------------------------------------------------------------------------------
                 conteudo = conteudo.replaceAll("\r", "");
                 conteudo = conteudo.replaceAll("\t", " ");
                 conteudo = conteudo.replaceAll("\n", "");
                 conteudo = conteudo.replaceAll(",", " ");
-                // char [] letras = conteudo.toCharArray();
+             
                 array = conteudo.split(" ");
                 vetor = new int[array.length];
                 //esse m�todo for, realiza a convers�o da string array(que recebeu o valor da linha.split, ou seja, usou os espa�os para definir o come�o e final do n�mero)
@@ -298,55 +314,47 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                 copiaVet = copiarVetor.copiarVetor(vetor);
              
                 String convertido = converter.toString(vetor);
-                // JOptionPane.showMessageDialog(null, convertido);
-                // JOptionPane.showMessageDialog(null, vetor.length);
+
                 trigger = 1;
                 
                 mostrarValoresOrdenados.setText("Arquivo carregado!");
-              
-              
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado" + file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
-            }
-            catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Arquivo inválido carregado" + "\n" +file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+              //-------------------------------------------------------------------------------------------------------------
+                 */
+            } catch (NumberFormatException e) {
+                error01Transparent32px("Arquivo inválido carregado" + "\n" + file.getAbsolutePath(), "Erro");
+                // JOptionPane.showMessageDialog(null, "Arquivo inválido carregado" + "\n" +file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
                 mostrarValoresOrdenados.setText("Arquivo inválido carregado");
                 textarea.setText("Arquivo inválido carregado");
+            } catch (IOException ex) {
+                Logger.getLogger(OrdenacaoUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+            // JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado" + file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+
         } else {
-            JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado", "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+            error01Transparent32px("Nenhum arquivo carregado", "Erro");
+            //  JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado", "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
 
         }
-       
+
     }//GEN-LAST:event_carregarActionPerformed
 
     private void salvarArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarArqActionPerformed
         if (trigger == 1) {
-             int returnVal = fileChooser.showSaveDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-             File file = fileChooser.getSelectedFile();
-           
-            try {
-                PrintWriter printWriter = new PrintWriter(file);
-                printWriter.print(converter.toString(copiaVet));
-                JOptionPane.showMessageDialog(null, "Sucesso ao salvar\n" + file.getAbsolutePath(), "Sucesso", JOptionPane.INFORMATION_MESSAGE, sucessoIcone);
-                printWriter.close();
-            }catch(IOException ex) {
-                
-                JOptionPane.showMessageDialog(null, "Erro ao salvar" + file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+            int returnVal = fileChooser.showSaveDialog(this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+
+                try {
+                    PrintWriter printWriter = new PrintWriter(file);
+                    printWriter.print(converter.toString(copiaVet));
+                    JOptionPane.showMessageDialog(null, "Sucesso ao salvar\n" + file.getAbsolutePath(), "Sucesso", JOptionPane.INFORMATION_MESSAGE, sucessoIcone);
+                    printWriter.close();
+                } catch (IOException ex) {
+
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar" + file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+                }
+
             }
-            /*
-            String nome = JOptionPane.showInputDialog("Informe onde deseja salvar o arquivo");
-            String conv = converter.toString(copiaVet);
-            Arquivo.salvarArquivo(nome, conv);
-            JOptionPane.showMessageDialog(null, "Arquivo salvo com sucesso!\n" + nome, "Salvar", JOptionPane.INFORMATION_MESSAGE);
-            */
-            
-           
-            /*
-            JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado", "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
-            */
-        }
         }
     }//GEN-LAST:event_salvarArqActionPerformed
 
@@ -473,6 +481,10 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         carregar.setToolTipText("Carregar Arquivo");
     }//GEN-LAST:event_carregarMouseEntered
 
+    private void salvarArqMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarArqMouseEntered
+        salvarArq.setToolTipText("Salve seu arquivo oredenado");
+    }//GEN-LAST:event_salvarArqMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -482,7 +494,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        /*try {
+ /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -498,33 +510,34 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(OrdenacaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }*/
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 BasicLookAndFeel darcula = new DarculaLaf();
-             //   if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(darcula);
-                  //  break;
-               // }
+                //   if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(darcula);
+                //  break;
+                // }
             }
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(OrdenacaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
                 new OrdenacaoUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JProgressBar barraProgresso;
     public javax.swing.JButton carregar;
-    private javax.swing.JFileChooser fileChooser;
+    public static javax.swing.JFileChooser fileChooser;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -533,9 +546,9 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JButton metodosDeOrdenacao;
     public javax.swing.JButton metodosDePesquisa;
-    private static javax.swing.JTextArea mostrarValoresOrdenados;
+    public static javax.swing.JTextArea mostrarValoresOrdenados;
     public javax.swing.JButton resetar;
     public javax.swing.JButton salvarArq;
-    private javax.swing.JTextArea textarea;
+    public static javax.swing.JTextArea textarea;
     // End of variables declaration//GEN-END:variables
 }
