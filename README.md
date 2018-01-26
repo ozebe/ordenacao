@@ -40,33 +40,33 @@ Modified: retirado partes de códigos desnecessárias ao abrir arquivos para dei
 Add: adicionado uma barra de carregamento ao carregar os arquivos.
 
 #### Sobre a versão 1.8
-Modified: modificado o design gráfico do programa, o tema padrão anterior era o Nimbus, agora
-o tema padrão é o Darcula
+<p>Modified: modificado o design gráfico do programa, o tema padrão anterior era o Nimbus, agora
+o tema padrão é o Darcula</p>
 
 #### Sobre a versão 1.7
-Fix: Consertado todos os bugs restantes na abertura de arquivos.
-Fix: Atualizado o sistema de carregamento, agora é utilizado um JFileChooser para escolher o arquivo a ser carregado.
-Fix: Atualizado o sistema de salvamento, agora é utilizado um JFileChooser para escolher onde salvar.
-Add: Adicionado um aviso caso o arquivo carregado não seja válido.
-Add: Após o arquivo ser ordenado agora aparece a quantia em milisegundos que foi necessário para sua ordenação.
-Improvement: melhorado o design do programa, aumentando a janela e os botões.
+<p>Fixed: Consertado todos os bugs restantes na abertura de arquivos.</p>
+<p>Fixed: Atualizado o sistema de carregamento, agora é utilizado um JFileChooser para escolher o arquivo a ser carregado.</p>
+<p>Fixed: Atualizado o sistema de salvamento, agora é utilizado um JFileChooser para escolher onde salvar.</p>
+<p>Added: Adicionado um aviso caso o arquivo carregado não seja válido.</p>
+<p>Added: Após o arquivo ser ordenado agora aparece a quantia em milisegundos que foi necessário para sua ordenação.</p>
+<p>Improvedt: melhorado o design do programa, aumentando a janela e os botões.</p>
 
 #### Sobre a versão 1.6
-Fix: solucionado alguns problemas com o sistema de carregamento, onde havia a possibilidade de abrir um arquivo contendo letras, assim travando o programa.
-Add: adicionado ícones para os botões, deixando o programa mais intuitivo.
-Add: adicionado o sistema de carregamento de arquivos melhorado, substituindo método antigo(veja o FAQ).
-Add: adicionado melhorias com a estabilidade do programa, sendo possivel abrir arquivos maiores.
-Add: adicionado o botão "sobre" ele mostra a quantia de números que foram carregados do arquivo(descartando tabulação, espaços e vírgulas).
+<p>Fix: solucionado alguns problemas com o sistema de carregamento, onde havia a possibilidade de abrir um arquivo contendo letras, assim travando o programa.</p>
+<p>Added: adicionado ícones para os botões, deixando o programa mais intuitivo.</p>
+<p>Added: adicionado o sistema de carregamento de arquivos melhorado, substituindo método antigo(veja o FAQ).</p>
+<p>Added: adicionado melhorias com a estabilidade do programa, sendo possivel abrir arquivos maiores.</p>
+<p>Added: adicionado o botão "sobre" ele mostra a quantia de números que foram carregados do arquivo(descartando tabulação, espaços e vírgulas).</p>
 
 #### Sobre a versão 1.5
-Add: visual do programa totalmente remodelado, utilizando JFrame.
-Improvement: melhorado o sistema de conversão dos dados, de String para Vetor, o que corrige o bug de as vezes um número mesmo separado ser confundido com outro.
-Add: adicionado todos os outros métodos restantes de ordenação como também de pesquisa de dados.
+<p>Added: visual do programa totalmente remodelado, utilizando JFrame.</p>
+<p>Improved: melhorado o sistema de conversão dos dados, de String para Vetor, o que corrige o bug de as vezes um número</p> mesmo separado ser confundido com outro.</p>
+<p>Added: adicionado todos os outros métodos restantes de ordenação como também de pesquisa de dados.</p>
 
 #### Sobre a versão 1.0
-Add: criado a lógica de carregamento de arquivos .txt e sua conversão para vetor
-Add: adicionado JOptionPanes para leitura de arquivos e para a leitura dos dados.
-Add: adicionado o bubble sort.
+<p>Added: criado a lógica de carregamento de arquivos .txt e sua conversão para vetor</p>
+<p>Added: adicionado JOptionPanes para leitura de arquivos e para a leitura dos dados.</p>
+<p>Added: adicionado o bubble sort.</p>
 
 #### Classes e métodos do programa para os curiosos
 
