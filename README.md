@@ -8,22 +8,28 @@ desenvolvido por Wesley Ozebe e Jackson Vinicius
 ### FAQ:
 #### Tipos de arquivos válidos 
 ##### separados por espaçamento simples:
+```
 1 3 2 7 10 5 
 22 32 12 15
+```
 observe que ao final da primeira linha, depois do 5 há um espaço
 ele delimita a primeira linha da segunda, fique atento
 caso seu arquivo seja dessa forma
 
 ##### Separados por vírgulas
+```
 13,2,5,8,9,36,66,
 32,10,21
+```
 observe que as linhas são separadas por vírgulas
 
 ##### separados por tabulação
+```
 79179	33886	94019	65386	4699	
 43448	15904	30542	99899	72414	
 78291	7953	53250	93258	41164	
-92766	90124	11179	92408	74786	
+92766	90124	11179	92408	74786   
+```
 observe que no final de cada linha há um tab
 você pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
 para fins de teste no programa.
