@@ -2,8 +2,8 @@
 # Sistema de ordenação de dados numéricos 
 ### versão 1.9
 desenvolvido por Wesley Ozebe e Jackson Vinicius
-última atualização: 23/01/2018
-(as principais funções estão na parte de baixo do documento)
+<p>última atualização: 23/01/2018</p>
+
 
 ### FAQ:
 #### Tipos de arquivos válidos 
@@ -12,7 +12,7 @@ desenvolvido por Wesley Ozebe e Jackson Vinicius
 1 3 2 7 10 5 
 22 32 12 15
 ```
-observe que ao final da primeira linha, depois do 5 há um espaço
+observe que ao final da primeira linha, depois do 5 há um espaço,
 ele delimita a primeira linha da segunda, fique atento
 caso seu arquivo seja dessa forma
 
@@ -31,48 +31,68 @@ observe que as linhas são separadas por vírgulas
 92766	90124	11179	92408	74786   
 ```
 observe que no final de cada linha há um tab
-você pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
-para fins de teste no programa.
+</p>você pode testar nesse site: https://www.invertexto.com/numeros-aleatorios
+para fins de teste no programa.</p>
 
-####                   Bugs conhecidos
-se existir um número maior que o limite do integer que é:
-2147483647((2^32 )- 1)
-o sistema não consegue carregar, já estou trabalhando em uma 
-possivel correção
+#### Considerações
+cada número a ser carregado do arquivo não pode ultrapassar o seguinte tamanho:
+2147483647 ou ((2^32 )- 1), caso exista o cálculo vai ser prejudicado e irá ocorrer
+um overflow.<p>Na próxima grande atualização, a v2.0 colocarei algum aviso para evitar
+que esse tipo de problema ocorra.</p>
+
 
 #### Sobre a versão 1.9
-<p>Modified: modificado o sistema de carregamento, utilizando-se thread para o carregamento ser mais rápido.</p>
-<p>Modified: retirado partes de códigos desnecessárias ao abrir arquivos para deixar o carregamento de arquivos mais rápido.<p/>
-<p>Added: adicionado uma barra de carregamento ao carregar os arquivos.<p/>
+<p>Melhorias:</p>
+<p>sistema de carregamento, utilizando-se thread para o carregamento ser mais rápido.</p>
+<p>retirado partes de códigos desnecessárias ao abrir arquivos para deixar o carregamento de arquivos .txt mais rápido.<p/>
+<p>Adicionado:</p>
+<p>adicionado uma barra de carregamento ao carregar os arquivos.<p/>
 
 #### Sobre a versão 1.8
-<p>Modified: modificado o design gráfico do programa, o tema padrão anterior era o Nimbus, agora
-o tema padrão é o Darcula</p>
+<p>Melhorias:</P>
+<P>modificado o design gráfico do programa, o tema padrão anterior era o Nimbus, agora
+o tema padrão é o Darcula LAF</p>
 
 #### Sobre a versão 1.7
-<p>Fixed: Consertado todos os bugs restantes na abertura de arquivos.</p>
-<p>Fixed: Atualizado o sistema de carregamento, agora é utilizado um JFileChooser para escolher o arquivo a ser carregado.</p>
-<p>Fixed: Atualizado o sistema de salvamento, agora é utilizado um JFileChooser para escolher onde salvar.</p>
-<p>Added: Adicionado um aviso caso o arquivo carregado não seja válido.</p>
-<p>Added: Após o arquivo ser ordenado agora aparece a quantia em milisegundos que foi necessário para sua ordenação.</p>
-<p>Improvedt: melhorado o design do programa, aumentando a janela e os botões.</p>
+<p>Correções:</p>
+<p>Consertado todos os bugs restantes na abertura de arquivos.</p>
+<p>Adicionado:</p>
+<p>aviso caso o arquivo carregado não seja válido.</p>
+<p>Após o arquivo ser ordenado agora aparece a quantia em milisegundos que foi necessário para sua ordenação.</p>
+<p>Melhorias:</p>
+<p>design do programa, aumentando a janela e os botões.</p>
+<p>Atualizado o sistema de carregamento, agora é utilizado um JFileChooser para escolher o arquivo a ser carregado.</p>
+<p>Atualizado o sistema de salvamento, agora é utilizado um JFileChooser para escolher onde salvar.</p>
 
 #### Sobre a versão 1.6
-<p>Fix: solucionado alguns problemas com o sistema de carregamento, onde havia a possibilidade de abrir um arquivo contendo letras, assim travando o programa.</p>
-<p>Added: adicionado ícones para os botões, deixando o programa mais intuitivo.</p>
-<p>Added: adicionado o sistema de carregamento de arquivos melhorado, substituindo método antigo(veja o FAQ).</p>
-<p>Added: adicionado melhorias com a estabilidade do programa, sendo possivel abrir arquivos maiores.</p>
-<p>Added: adicionado o botão "sobre" ele mostra a quantia de números que foram carregados do arquivo(descartando tabulação, espaços e vírgulas).</p>
+<p>Correções:</p>
+<p>solucionado alguns problemas com o sistema de carregamento, onde havia a possibilidade de abrir um arquivo contendo letras, assim travando o programa.</p>
+<p>Adicionado:</p>
+<p>adicionado ícones para os botões, deixando o programa mais intuitivo.</p>
+<p>sistema de carregamento de arquivos melhorado, substituindo método antigo(veja o FAQ).</p>
+<p>botão "sobre", ele mostra a quantia de números que foram carregados do arquivo(descartando tabulação, espaços e vírgulas).</p>
+<p>Melhorias:</p>
+<p>estabilidade do programa, sendo possivel abrir arquivos maiores.</p>
 
 #### Sobre a versão 1.5
-<p>Added: visual do programa totalmente remodelado, utilizando JFrame.</p>
-<p>Improved: melhorado o sistema de conversão dos dados, de String para Vetor, o que corrige o bug de as vezes um número</p> mesmo separado ser confundido com outro.</p>
-<p>Added: adicionado todos os outros métodos restantes de ordenação como também de pesquisa de dados.</p>
+<p>Modificado:</p>
+<p>visual do programa totalmente remodelado, utilizando-se JFrame.</p>
+<p>Melhorias:</p>
+<p>melhorado o sistema de conversão dos dados, de String para Vetor, o que corrige o bug de as vezes um número mesmo separado ser confundido com outro.</p>
+<p>Adicionado:</p>
+<p>todos os outros métodos restantes de ordenação como também de pesquisa de dados.</p>
+
+#### Sobre a versão 1.3
+<p>Modificado:</p>
+<p>Loógica de carregamento</>
+<p>Adicionado:</p>
+<p>cJButtons para o programa ficar mais intuitivo</p>
 
 #### Sobre a versão 1.0
-<p>Added: criado a lógica de carregamento de arquivos .txt e sua conversão para vetor</p>
-<p>Added: adicionado JOptionPanes para leitura de arquivos e para a leitura dos dados.</p>
-<p>Added: adicionado o bubble sort.</p>
+<p>Adicionado:</p> 
+<p>lógica de carregamento de arquivos .txt e sua conversão para vetor</p>
+<p>JOptionPanes para leitura de arquivos e para a leitura dos dados.</p>
+<p>forma de ordenação bubble sort.</p>
 
 #### Classes e métodos do programa para os curiosos
 
