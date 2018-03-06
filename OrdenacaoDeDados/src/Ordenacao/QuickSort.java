@@ -1,14 +1,44 @@
+
 package Ordenacao;
 
-
+import static Ordenacao.OrdenacaoUI.barraProgresso;
+import static Ordenacao.OrdenacaoUI.conversor;
+import static Ordenacao.OrdenacaoUI.copiaVet;
+import static Ordenacao.OrdenacaoUI.mostrarValoresOrdenados;
 
 
 /**
  *
- * @author Wesley e Jackson
+ * @author Wesley
  */
-public class QuickSort {
+class QuickSort implements Runnable {
 
+
+    public void run() {
+        QuickSort();
+    }
+
+    public void QuickSort() {
+        barraProgresso.setVisible(true);
+        barraProgresso.setIndeterminate(true);
+        OrdenacaoUI.ordenando = 1;
+        quickSort(copiaVet, 0, copiaVet.length - 1);
+        
+        String converter = "";
+        for (int i = 0; i < copiaVet.length; i++) {
+            converter += Integer.toString(copiaVet[i]) + ",";
+           
+            OrdenacaoUI.status.setText("Convertendo...");
+        }
+         
+        OrdenacaoUI.conversor = converter;
+        mostrarValoresOrdenados.setText("Vetor ordenado: " + conversor);
+        barraProgresso.setIndeterminate(false);
+        barraProgresso.setVisible(false);
+        OrdenacaoUI.status.setText("");
+        OrdenacaoUI.ordenando = 0;
+    }
+    
     public static void quickSort(int v[], int ini, int fim) {
 
         int posPilha;
@@ -21,6 +51,7 @@ public class QuickSort {
         posPilha = 0;
 
         while (posPilha >= 0) {
+            OrdenacaoUI.status.setText("Ordenando...");
             ini = pilhaEsq[posPilha];
             fim = pilhaDir[posPilha];
             --posPilha;
@@ -33,10 +64,12 @@ public class QuickSort {
                 pilhaEsq[posPilha] = j + 1;
                 pilhaDir[posPilha] = fim;
             }
+            
         }
     }
-
-    private static int ordena(int v[], int ini, int fim) {
+    
+    
+     private static int ordena(int v[], int ini, int fim) {
         int i = ini + 1; // vari�vel utilizada para percorer o vetor v da esquerda para a direita partindo do in�cio + 1
         int j = fim; // vari�vel utilizada para percorer o vetor v da direita para a esquerda partindo do fim 
         int pivo = v[ini]; // o pivo inicia-se do primeiro elemento do vetor 
@@ -53,11 +86,11 @@ public class QuickSort {
                 ++i;
                 --j;
             }
+            
         }
         // agora i == j+1                 
         v[ini] = v[j];
         v[j] = pivo;
         return j;
     }
-
 }

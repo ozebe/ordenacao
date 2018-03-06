@@ -1,19 +1,26 @@
+
 package Ordenacao;
 
-
-
-
-
-import static Ordenacao.Swap.swap;
+import static Ordenacao.OrdenacaoUI.barraProgresso;
+import static Ordenacao.OrdenacaoUI.conversor;
+import static Ordenacao.OrdenacaoUI.copiaVet;
+import static Ordenacao.OrdenacaoUI.mostrarValoresOrdenados;
 
 /**
  *
- * @author Wesley e Jackson
+ * @author Wesley
  */
-public class BubbleSort {
+class BubbleSort implements Runnable {
 
-    public static void bubbleSort(int[] vet) {
+    public void run() {
+        intToString();
+    }
 
+    public void intToString() {
+        barraProgresso.setVisible(true);
+        OrdenacaoUI.ordenando = 1;
+        barraProgresso.setIndeterminate(true);
+        int[] vet = copiaVet;
         int movimentacao = 0;
         boolean troca = true;
         int tam = vet.length;
@@ -26,8 +33,29 @@ public class BubbleSort {
                     movimentacao += 3;
                     troca = true;
                 }
+                
+                OrdenacaoUI.status.setText("Ordenando...");
             }
         }
 
+        String converter = "";
+        for (int i = 0; i < copiaVet.length; i++) {
+            converter += Integer.toString(copiaVet[i]) + ",";
+           
+            OrdenacaoUI.status.setText("Convertendo...");
+        }
+
+        OrdenacaoUI.conversor = converter;
+        mostrarValoresOrdenados.setText("Vetor ordenado: " + conversor);
+        barraProgresso.setIndeterminate(false);
+        barraProgresso.setVisible(false);
+        OrdenacaoUI.status.setText("");
+        OrdenacaoUI.ordenando = 0;
+    }
+
+    public static void swap(int[] vet, int i, int j) {
+        int aux = vet[i];
+        vet[i] = vet[i + 1];
+        vet[i + 1] = aux;
     }
 }

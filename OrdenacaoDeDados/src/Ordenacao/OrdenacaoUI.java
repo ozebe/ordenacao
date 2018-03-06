@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ordenacao;
 //biblioteca especial que consegue manipular arquivos de forma mais fácil
 
 import org.apache.commons.io.FileUtils;
 
-import static Ordenacao.BubbleSort.bubbleSort;
-import static Ordenacao.InsertionSort.insertionSort;
-import static Ordenacao.MergeSort.mergeSort;
 import static Ordenacao.PesquisaBinaria.pesquisaBinaria;
 import static Ordenacao.PesquisaSequencial.pesquisaSequencial;
-import static Ordenacao.QuickSort.quickSort;
-import static Ordenacao.SelectionSort.selectionSort;
+
 import com.bulenkov.darcula.DarculaLaf;
 import java.io.File;
 import java.io.FileReader;
@@ -22,7 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -47,7 +37,9 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     public static int trigger = 0;
     public static JFileChooser fc;
     public static String conteudo;
-    
+    public static String converter2;
+    public static String conversor;
+    public static int ordenando = 0;
     Icon erroIcone = new ImageIcon(getToolkit().createImage(getClass().getResource("/Ordenacao/images/Erro.png")));
     Icon sucessoIcone = new ImageIcon(getToolkit().createImage(getClass().getResource("/Ordenacao/images/icons8-Sobre-32.png")));
 
@@ -99,6 +91,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
         mostrarValoresOrdenados = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         barraProgresso = new javax.swing.JProgressBar();
+        status = new javax.swing.JLabel();
 
         fileChooser.setDialogTitle("");
         fileChooser.setFileFilter(new MyCustomFilter());
@@ -188,7 +181,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Versão 1.8");
+        jLabel2.setText("Versão 1.9.5");
 
         textarea.setEditable(false);
         textarea.setColumns(20);
@@ -227,18 +220,20 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                             .addComponent(resetar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(348, 348, 348)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(barraProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(237, 237, 237)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(barraProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)))))
                         .addGap(9, 9, 9))))
         );
         layout.setVerticalGroup(
@@ -263,17 +258,22 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(metodosDePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(resetar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -288,38 +288,11 @@ public class OrdenacaoUI extends javax.swing.JFrame {
             try {
                 textarea.read(new FileReader(file.getAbsolutePath()), null);
                 conteudo = FileUtils.readFileToString(file, "UTF-8");
+
                 int janelaProcessamento = 4;
                 ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
                 executor.execute(new FileProcessor());
-              
-              //  executor.awaitTermination(0, TimeUnit.SECONDS);
-                   //será retirado na próxima grande atualização
-                /*
-                textarea.read(new FileReader(file.getAbsolutePath()), null);
-                //biblioteca especial apache FileUtils
-                conteudo = FileUtils.readFileToString(file, "UTF-8");
-              //------------------------------------------------------------------------------------------------------------
-                conteudo = conteudo.replaceAll("\r", "");
-                conteudo = conteudo.replaceAll("\t", " ");
-                conteudo = conteudo.replaceAll("\n", "");
-                conteudo = conteudo.replaceAll(",", " ");
-             
-                array = conteudo.split(" ");
-                vetor = new int[array.length];
-                //esse m�todo for, realiza a convers�o da string array(que recebeu o valor da linha.split, ou seja, usou os espa�os para definir o come�o e final do n�mero)
-                for (int i = 0; i < array.length; i++) {
-                    vetor[i] = Integer.parseInt(array[i]);
-                   
-                }
-                copiaVet = copiarVetor.copiarVetor(vetor);
-             
-                String convertido = converter.toString(vetor);
 
-                trigger = 1;
-                
-                mostrarValoresOrdenados.setText("Arquivo carregado!");
-              //-------------------------------------------------------------------------------------------------------------
-                 */
             } catch (NumberFormatException e) {
                 error01Transparent32px("Arquivo inválido carregado" + "\n" + file.getAbsolutePath(), "Erro");
                 // JOptionPane.showMessageDialog(null, "Arquivo inválido carregado" + "\n" +file.getAbsolutePath(), "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
@@ -339,7 +312,9 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_carregarActionPerformed
 
     private void salvarArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarArqActionPerformed
+
         if (trigger == 1) {
+
             int returnVal = fileChooser.showSaveDialog(this);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
@@ -359,62 +334,71 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_salvarArqActionPerformed
 
     private void metodosDeOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metodosDeOrdenacaoActionPerformed
-        if (trigger == 1) {
+        if (trigger == 1 && ordenando == 0) {
 
             Object[] Ordenacao = {"bubbleSort", "insertionSort", "selectionSort", "mergeSort", "quickSort"};
             Object metodoDeOrdenacaoSelecionado = JOptionPane.showInputDialog(null, "Escolha um método de ordenação", "Opções de ordenação", JOptionPane.INFORMATION_MESSAGE, null, Ordenacao, Ordenacao[0]);
-            if (metodoDeOrdenacaoSelecionado == Ordenacao[0]) {
-                long inicioMedicao = System.currentTimeMillis();
-                bubbleSort(copiaVet);
 
-                String valorConvertido = converter.toString(copiaVet);
+            if (metodoDeOrdenacaoSelecionado == Ordenacao[0]) {
+
+                long inicioMedicao = System.currentTimeMillis();
+                int janelaProcessamento = 4;
+                ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
+
+                executor.execute(new BubbleSort());
+
                 long finalMedicao = System.currentTimeMillis();
                 long Medicao = finalMedicao - inicioMedicao;
-                JOptionPane.showMessageDialog(null, "Vetor ordenado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Foram necessários: " + Medicao + " Milisegundos para a ordenação", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                mostrarValoresOrdenados.setText("Vetor ordenado: " + valorConvertido);
+
             } else if (metodoDeOrdenacaoSelecionado == Ordenacao[1]) {
                 long inicioMedicao = System.currentTimeMillis();
-                insertionSort(copiaVet);
 
-                String valorConvertido = converter.toString(copiaVet);
+                int janelaProcessamento = 4;
+                ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
+
+                executor.execute(new InsertionSort());
+
                 long finalMedicao = System.currentTimeMillis();
                 long Medicao = finalMedicao - inicioMedicao;
-                JOptionPane.showMessageDialog(null, "Vetor ordenado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Foram necessários: " + Medicao + " Milisegundos para a ordenação", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                mostrarValoresOrdenados.setText("Vetor ordenado: " + valorConvertido);
+
             } else if (metodoDeOrdenacaoSelecionado == Ordenacao[2]) {
                 long inicioMedicao = System.currentTimeMillis();
-                selectionSort(copiaVet);
 
-                String valorConvertido = converter.toString(copiaVet);
+                int janelaProcessamento = 4;
+                ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
+
+                executor.execute(new SelectionSort());
+
                 long finalMedicao = System.currentTimeMillis();
                 long Medicao = finalMedicao - inicioMedicao;
-                JOptionPane.showMessageDialog(null, "Vetor ordenado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Foram necessários: " + Medicao + " Milisegundos para a ordenação", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                mostrarValoresOrdenados.setText("Vetor ordenado: " + valorConvertido);
+
             } else if (metodoDeOrdenacaoSelecionado == Ordenacao[3]) {
                 long inicioMedicao = System.currentTimeMillis();
-                mergeSort(copiaVet, 0, copiaVet.length - 1);
 
-                String valorConvertido = converter.toString(copiaVet);
+                int janelaProcessamento = 4;
+                ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
+
+                executor.execute(new MergeSort());
+
                 long finalMedicao = System.currentTimeMillis();
                 long Medicao = finalMedicao - inicioMedicao;
-                JOptionPane.showMessageDialog(null, "Vetor ordenado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Foram necessários: " + Medicao + " Milisegundos para a ordenação", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                mostrarValoresOrdenados.setText("Vetor ordenado: " + valorConvertido);
+
             } else if (metodoDeOrdenacaoSelecionado == Ordenacao[4]) {
                 long inicioMedicao = System.currentTimeMillis();
-                quickSort(copiaVet, 0, copiaVet.length - 1);
 
-                String valorConvertido = converter.toString(copiaVet);
+                int janelaProcessamento = 4;
+                ScheduledExecutorService executor = Executors.newScheduledThreadPool(janelaProcessamento);
+
+                executor.execute(new QuickSort());
+
                 long finalMedicao = System.currentTimeMillis();
                 long Medicao = finalMedicao - inicioMedicao;
-                JOptionPane.showMessageDialog(null, "Vetor ordenado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Foram necessários: " + Medicao + " Milisegundos para a ordenação", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                mostrarValoresOrdenados.setText("Vetor ordenado: " + valorConvertido);
+
             }
-        } else {
+        } else if (ordenando == 1) {
+            JOptionPane.showMessageDialog(null, "Uma ordenação está em andamento aguarde", "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
+
+        } else if (trigger == 0) {
             JOptionPane.showMessageDialog(null, "Nenhum arquivo carregado", "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
         }
     }//GEN-LAST:event_metodosDeOrdenacaoActionPerformed
@@ -549,6 +533,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     public static javax.swing.JTextArea mostrarValoresOrdenados;
     public javax.swing.JButton resetar;
     public javax.swing.JButton salvarArq;
+    public static javax.swing.JLabel status;
     public static javax.swing.JTextArea textarea;
     // End of variables declaration//GEN-END:variables
 }
