@@ -1,8 +1,8 @@
 
 # Sistema de ordenação de dados numéricos 
-### versão 1.9
+### versão 1.9.5
 desenvolvido por Wesley Ozebe e Jackson Vinicius
-<p>última atualização: 23/01/2018</p>
+<p>última atualização: 06/03/2018</p>
 
 
 ### FAQ:
@@ -40,6 +40,10 @@ cada número a ser carregado do arquivo não pode ultrapassar o seguinte tamanho
 um overflow.<p>Na próxima grande atualização, a v2.0 colocarei algum aviso para evitar
 que esse tipo de problema ocorra.</p>
 
+#### Sobre a versão 1.9.5
+<p>Melhorias:</P>
+<p>sistema de ordenação todo refeito, utilizando-se thread para ocorrer mais rápido</p>
+<p>retirado partes de códigos desnecessárias e classes do sistema de ordenação, aumentando a velocidade</p>
 
 #### Sobre a versão 1.9
 <p>Melhorias:</p>
