@@ -286,7 +286,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Vers&#xe3;o 1.9.5"/>
+        <Property name="text" type="java.lang.String" value="Vers&#xe3;o 1.9.6"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane3">

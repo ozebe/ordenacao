@@ -181,7 +181,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Versão 1.9.5");
+        jLabel2.setText("Versão 1.9.6");
 
         textarea.setEditable(false);
         textarea.setColumns(20);
@@ -283,7 +283,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
     private void carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarActionPerformed
 
         int returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) { 
             File file = fileChooser.getSelectedFile();
             try {
                 textarea.read(new FileReader(file.getAbsolutePath()), null);
@@ -427,7 +427,7 @@ public class OrdenacaoUI extends javax.swing.JFrame {
                 int resultadoDaPesquisa = pesquisaBinaria(copiaVet, converterValorParaPesquisar);
                 if (resultadoDaPesquisa == -1) {
                     JOptionPane.showMessageDialog(null, "O valor " + converterValorParaPesquisar + " não pode ser encontrado no vetor",
-                            "Sucesso", JOptionPane.ERROR_MESSAGE, erroIcone);
+                            "Erro", JOptionPane.ERROR_MESSAGE, erroIcone);
                 } else {
                     JOptionPane.showMessageDialog(null, "Valor pesquisado: " + converterValorParaPesquisar + "\nEncontrado na posição: " + resultadoDaPesquisa);
                 }
