@@ -1,8 +1,8 @@
 
 # Sistema de ordenação de dados numéricos 
-### versão 1.9.5
+### versão 1.9.6
 desenvolvido por Wesley Ozebe e Jackson Vinicius
-<p>última atualização: 06/03/2018</p>
+<p>última atualização: 22/03/2019</p>
 
 
 ### FAQ:
@@ -36,9 +36,15 @@ para fins de teste no programa.</p>
 
 #### Considerações
 cada número a ser carregado do arquivo não pode ultrapassar o seguinte tamanho:
-2147483647 ou ((2^32 )- 1), caso exista o cálculo vai ser prejudicado e irá ocorrer
+2147483647 ou ((2^32 )- 1), caso exista, o cálculo vai ser prejudicado e irá ocorrer
 um overflow.<p>Na próxima grande atualização, a v2.0 colocarei algum aviso para evitar
 que esse tipo de problema ocorra.</p>
+
+#### Sobre a versão 1.9.6
+<p>Melhorias:</p>
+<p>Agora o programa detecta via Regex se o arquivo carregado possui algo diferente de números e apresenta um erro</P>
+<p>Correções:</p>
+<p>Corrigido um erro de português quando era feito uma pesquisa no vetor e não era encontrado o valor pesquisado</p>
 
 #### Sobre a versão 1.9.5
 <p>Melhorias:</P>
